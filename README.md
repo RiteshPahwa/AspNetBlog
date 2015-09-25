@@ -5,7 +5,7 @@ Welcome to AspNetBlog - Visit http://AspNetBlog.com to see it live (coming soon)
 ASP vNext, Asp.Net 5, MVC 6 Blog, Entity Framework 7 Source Code Example 
 
 ## Purpose
-1. To Showcase the new features of MVC 6
+1. To Showcase the new features of ASP.Net 5 MVC 6 Beta 6 
 2. To build a typical application which uses MVC, Security, Session, Entity Framework 7
 
 ## How to use it
