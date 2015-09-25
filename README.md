@@ -1,12 +1,34 @@
-# AspNetBlog
-Welcome to AspNetBlog - Visit http://AspNetBlog.com (coming soon)
+# Open Source Asp.Net MVC Blog Project using ASP.NET 5 MVC 6
 
-## Technologies
-ASP vNext, Asp.Net 5, MVC 6 Blog, Entity Framework 7 Source Code Example 
+## Project
 
-## Purpose
-1. To Showcase the new features of MVC 6
-2. To build a typical application which uses MVC, Security, Session, Entity Framework 7
+This project is for learning ASP.Net 5 MVC 6 with a Blog example
 
-## Help
-I will be needing help to tidy up this code so that we all have a good boilerplate to lookafter from solid .Net MVC app and from learning perspective as well, you are welcome to the party!
+## Website
+
+The sample for AspNetBlog website is available at http://www.aspnetblog.com
+
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Ritesh Pahwa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
