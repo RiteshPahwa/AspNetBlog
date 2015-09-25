@@ -1,0 +1,34 @@
+﻿@using ASPNetBlog.ViewComponents
+@model ASPNetBlog.Models.SidePanelViewModel
+@{ 
+    var panelClass = (Model.SidePanel == SidePanel.Categories) ? "panel-primary" :
+        (Model.SidePanel == SidePanel.Tags) ? "panel-success" : "panel-info";
+
+}
+<div class="panel @panelClass">
+    <div class="panel-heading">
+        <div class="panel-title">@Model.Heading</div>
+    </div>
+    <div class="panel-body">
+    @if (Model.SidePanel == SidePanel.Tags)
+    {
+        <div class="lead">
+        @foreach (var item in Model.Data)
+        {
+            <a class="label label-success" href="@item.Value">@item.Key</a>
+        }
+        </div>
+    }
+    else
+    {
+        <ul class="list-group">
+            @foreach (var item in Model.Data)
+            {
+                <li class='list-group-item '>
+                    <a href="@item.Value"><i class='fa @(Model.SidePanel == SidePanel.Categories ? "fa-expand" : "fa-folder-open")'></i> @item.Key</a>
+                </li>
+            }
+        </ul>
+    }
+    </div>
+</div>

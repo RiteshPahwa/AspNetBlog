@@ -1,0 +1,42 @@
+﻿@addTagHelper "*, ASPNetBlog"
+@{ }
+<h2>@ViewBag.EntityTitle - @ViewBag.Title</h2>
+@*MVC 6 Coding Example -- Ritesh Pahwa 9/10/15*@
+@{await Html.RenderPartialAsync("_Alerts"); }
+
+<p class="button"><a asp-route-area="Admin" asp-controller="User" class="btn btn-info" asp-action="Add">Add <i class="fa fa-arrow-right"></i></a></p>
+<table id="paging" class="table"></table>
+
+@section scripts {
+    <script src="~/lib/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables-bootstrap3/BS3/assets/js/datatables.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $('#paging').dataTable({
+            serverSide: true,
+            ajax: "/Admin/User/Paging",
+            columns: [
+                { name: 'Id', data: 'Id', title: "Id", visible: false },
+                { name: 'Email', data: "Email", title: "Email / UserName", sortable: true, searchable: true },
+                { name: 'FullName', data: "FullName", title: "Full Name", sortable: true, searchable: true },
+                { name: 'AppUserId', data: "AppUserId", title: "App UserId", sortable: true, searchable: false },
+                { name: 'Activated', data: "Activated", title: "Activated", sortable: true, searchable: false },
+                { name: 'EmailConfirmed', data: "EmailConfirmed", title: "Email Confirmed", sortable: true, searchable: false },
+                { name: 'AccessFailedCount', data: "AccessFailedCount", title: "Access Failed Count", sortable: true, searchable: false },
+                { name: 'LockoutEnabled', data: "LockoutEnabled", title: "Lockout Enabled", sortable: true, searchable: false },
+                { name: 'TwoFactorEnabled', data: "TwoFactorEnabled", title: "TwoFactor Enabled", sortable: true, searchable: false },
+                { data: null, title: "Action", render: function (data, type, row) {
+                    return '<a href="./User/Edit?id=' + data.Id + '">Edit</a> / <a href="./User/Delete?id=' + data.Id + '" >Delete</a>';
+                } }
+            ]
+        });
+        var dtable = $("#paging").dataTable().api();
+        $('.dataTables_filter input') //Set wait for 3 chars or enter
+            .unbind()
+            .bind('input', function (e) {
+                if (this.value.length >= 2 || e.keyCode == 13) dtable.search(this.value).draw();
+                if (this.value == "") dtable.search("").draw();
+            });
+    });
+    </script>
+}

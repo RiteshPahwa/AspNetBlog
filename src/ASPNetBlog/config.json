@@ -1,0 +1,7 @@
+{
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=.\\SQLEXP;Database=ASPNetBlog;Trusted_Connection=True;MultipleActiveResultSets=true;"
+    }
+  }
+}

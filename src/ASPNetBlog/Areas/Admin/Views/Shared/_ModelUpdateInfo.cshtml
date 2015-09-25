@@ -1,0 +1,13 @@
+﻿@if (Model.CreatedByName != null)
+{
+    <div class="form-group">
+    <div class="alert-info alert-info"> <i class="fa fa-user"></i>    
+    Created by @Model.CreatedByName on @Model.CreatedOn
+
+    @if (Model.ModifiedByName != null)
+    {
+        @: <i class="col-sm-offset-1 fa fa-user-md"></i> Modified by @Model.ModifiedByName on @Model.ModifiedOn
+    }
+    </div>
+</div>
+}

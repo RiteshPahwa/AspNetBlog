@@ -1,0 +1,39 @@
+﻿@addTagHelper "*, ASPNetBlog"
+@{ }
+<h2>@ViewBag.EntityTitle - @ViewBag.Title</h2>
+@*MVC 6 Coding Example -- Ritesh Pahwa 9/12/15*@
+@{await Html.RenderPartialAsync("_Alerts"); }
+
+<p class="button"><a asp-route-area="Admin" asp-controller="Post" class="btn btn-info" asp-action="Add">Add <i class="fa fa-arrow-right"></i></a></p>
+<table id="paging" class="table"></table>
+
+@section scripts {
+<script src="~/lib/datatables/media/js/jquery.dataTables.js"></script>
+<script src="~/lib/datatables-bootstrap3/BS3/assets/js/datatables.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#paging').dataTable({
+            serverSide: true,
+            ajax: "/Admin/Post/Paging",
+            columns: [
+                { name: 'Id', data: 'Id', title: "Id", sortable: true, searchable: true },
+                { name: 'Title', data: "Title", title: "Title", sortable: true, searchable: true },
+                { name: 'PostedOn', data: "PostedOn", title: "PostedOn", sortable: true, searchable: true },
+                { data: null, title: "Action", render: function (data, type, row) {
+                    return '<a href="./Post/Edit?id=' + data.Id + '">Edit</a> / <a href="./Post/Delete?id=' + data.Id + '" >Delete</a>';
+                } }
+                //{ data: null, className: "center", defaultContent: '<a href="./Edit?id='+ oObj.aData[0] + '">Edit</a> / <a href="" class="editor_remove">Delete</a>' }
+            ]
+        });
+        var dtable = $("#paging").dataTable().api();
+        $('.dataTables_filter input') //Set wait for 3 chars or enter
+            .unbind()
+            .bind('input', function (e) {
+                if (this.value.length >= 2 || e.keyCode == 13) dtable.search(this.value).draw();
+                if (this.value == "") dtable.search("").draw();
+            });
+    });
+</script>
+}
+
+@*<paging pageNo="1" pageCount="2" pageUrl="#" pageUrlTitle="" pagingWindow="10"></paging>*@

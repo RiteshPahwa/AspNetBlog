@@ -1,0 +1,75 @@
+﻿@model AuthorViewModel
+@{ }
+@*MVC 6 Coding Example -- Ritesh Pahwa 9/12/15*@
+@section head{
+    <link href="~/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="~/lib/summernote/dist/summernote.css" rel="stylesheet" />
+}
+<h2>@ViewBag.EntityTitle - @ViewBag.Title</h2>
+
+@{await Html.RenderPartialAsync("_Alerts"); }
+
+    <form class="form-horizontal" method="post" asp-antiforgery="true">
+        <div asp-validation-summary="ValidationSummary.All" class="text-danger col-sm-12 help-block"></div>
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="RowStamp" type="hidden" />
+        <input asp-for="CreatedByName" type="hidden" />
+        <input asp-for="ModifiedByName" type="hidden" />
+        <div class="form-group">
+            <label asp-for="Name" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Slug" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Slug" />
+                <span asp-validation-for="Slug" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ShortDescription" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <textarea asp-for="ShortDescription" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="AppUserId" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <select asp-for="AppUserId" asp-items="ViewBag.Authors" class="form-control"><option value=""> - Select - </option></select>
+                <span asp-validation-for="AppUserId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Content" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <textarea asp-for="Content" class="form-control summernote" rows="15"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+        </div>
+        @{ await Html.RenderPartialAsync("_ModelUpdateInfo");}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input class="btn btn-primary" type="submit" value="Save" />
+            </div>
+        </div>
+    </form>
+<hr />
+<p><a class="btn btn-info" asp-route-area="Admin" asp-controller="Author" asp-action="Index"><i class="fa fa-arrow-left"></i> Back to List</a></p>
+@section scripts {
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="~/lib/select2/dist/js/select2.min.js"></script>
+    <script src="~/lib/summernote/dist/summernote.min.js"></script>
+    <script src="~/js/slug.js"></script>
+    <script src="~/js/lengthCounter.js"></script>
+    <script>
+        $(function () { $('#AppUserId').select2(); });
+        $(function () { $('.summernote').summernote({ height: 300 }); });
+        $(function () { $('#Name').toSlug({ slugElement: '#Slug' }); });
+        $(function () { $('form input[data-val-length-max], form textarea[data-val-length-max]').showCharacterCount(); });
+</script>
+}

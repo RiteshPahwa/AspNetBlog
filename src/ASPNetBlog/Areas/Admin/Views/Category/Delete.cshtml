@@ -1,0 +1,27 @@
+﻿@model CategoryViewModel
+@{ }
+@*MVC 6 Coding Example -- Ritesh Pahwa 9/5/15*@
+<h2>@ViewBag.EntityTitle - @ViewBag.Title</h2>
+
+@{await Html.RenderPartialAsync("_Alerts"); }
+
+<p>
+    Are you sure you want to delete: <strong>@Model.Name</strong>?
+</p>
+<form class="form-horizontal" method="post" asp-antiforgery="true">
+    <hr />
+    <div class="row"><div asp-validation-summary="ValidationSummary.All" class="text-danger col-md-12"></div></div>
+    <div class="form-group">
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="Name" type="hidden" />
+        <input asp-for="Slug" type="hidden" />
+        <input asp-for="RowStamp" type="hidden" />
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input class="btn btn-primary" type="submit" value="Delete" />
+        </div>
+    </div>
+</form>
+<hr />
+<p><a class="btn btn-info" asp-route-area="Admin" asp-controller="Category" asp-action="Index"><i class="fa fa-arrow-left"></i> Back to List</a></p>

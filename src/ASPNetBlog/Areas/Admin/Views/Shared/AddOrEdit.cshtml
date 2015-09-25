@@ -1,0 +1,18 @@
+﻿@*model Category*@
+@{ }
+<h1>ViewBag.EntityTitle</h1>
+<h2>ViewBag.Title</h2>
+<form asp-antiforgery="true">
+    <hr />
+    <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+    <fieldset>
+        @Html.EditorForModel()
+    </fieldset>
+    <input class="btn btn-success" type="submit" value="Save" />
+</form>
+<hr />
+<p><a class="btn btn-info" asp-route-area="Admin" asp-controller="@ViewBag.Controller" asp-action="Index"><i class="fa fa-arrow-left"></i> Back to List</a></p>
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+}

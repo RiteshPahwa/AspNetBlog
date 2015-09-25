@@ -1,0 +1,23 @@
+{
+  "name": "ASP.NET",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.3.5",
+    "bootstrap-touch-carousel": "0.8.0",
+    "bootstrap3-datetimepicker": "^4.17.37",
+    "font-awesome": "^4.4.0",
+    "bootstrap-social": "^4.10.1",
+    "hammer.js": "2.0.4",
+    "jquery": "^2.1.4",
+    "jquery-validation": "1.11.1",
+    "jquery-validation-unobtrusive": "3.2.2",
+    "select2": "4.0.0",
+    "summernote": "^0.6.16",
+    "datatables-bootstrap3": "*",
+    "startbootstrap-sb-admin-2": "~1.0.7"
+  },
+  "resolutions": {
+    "bootstrap": ">= 3.0.1",
+    "jquery": "2.1.4"
+  }
+}

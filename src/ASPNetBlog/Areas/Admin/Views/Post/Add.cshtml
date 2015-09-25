@@ -1,0 +1,127 @@
+﻿@model PostViewModel
+@{ }
+@*MVC 6 Coding Example -- Ritesh Pahwa 9/12/15*@
+@section head{
+<link href="~/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+<link href="~/lib/summernote/dist/summernote.css" rel="stylesheet" />
+<link href="~/lib/bootstrap3-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+}
+<h2>@ViewBag.EntityTitle - @ViewBag.Title</h2>
+
+@{await Html.RenderPartialAsync("_Alerts"); }
+    <form role="form" method="post" asp-antiforgery="true">
+    <div asp-validation-summary="ValidationSummary.All" class="text-danger col-sm-12 help-block"></div>
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="RowStamp" type="hidden" />
+    <input asp-for="CreatedByName" type="hidden" />
+    <input asp-for="ModifiedByName" type="hidden" />
+    <div class="row">
+        <div class="col-sm-8 form-horizontal">
+            <div class="form-group">
+                <label asp-for="Title" class="col-sm-1 control-label"></label>
+                <div class="col-sm-11">
+                    <input class="form-control" asp-for="Title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slug" class="col-sm-1 control-label"></label>
+                <div class="col-sm-11">
+                    <input class="form-control" asp-for="Slug" />
+                    <span asp-validation-for="Slug" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortDescription" class="col-sm-1 control-label"></label>
+                <div class="col-sm-11">
+                    <textarea asp-for="ShortDescription" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <textarea asp-for="Content" class="form-control summernote" rows="15"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            @{ await Html.RenderPartialAsync("_ModelUpdateInfo");}
+        </div>
+        <div class="col-sm-4 ">
+            <div class="panel panel-body">
+                <fieldset class="form-horizontal">
+                    <div class="form-group">
+                        <label asp-for="AuthorId" class="control-label"></label>
+                        <select asp-for="AuthorId" asp-items="ViewBag.Authors" class="form-control"></select>
+                        <span asp-validation-for="AuthorId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PostCategories" class="control-label"></label>
+                            <select class="form-control" asp-for="PostCategories" asp-items="ViewBag.Categories" multiple="multiple"></select>
+                            <span asp-validation-for="PostCategories" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PostTags" class="control-label"></label>
+                            <select class="form-control" asp-for="PostTags" asp-items="ViewBag.Tags" multiple="multiple"></select>
+                            <span asp-validation-for="PostTags" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PublishStatus" class="control-label"></label>
+                        <select class="form-control" asp-for="PublishStatus" asp-items="ViewBag.PublishStatuses"></select>
+                        <span asp-validation-for="PublishStatus" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PostedOn" class="control-label"></label>
+                        <input class="form-control" asp-for="PostedOn" />
+                        <span asp-validation-for="PostedOn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Visibility" class="control-label"></label>
+                        <select class="form-control" asp-for="Visibility" asp-items="ViewBag.Visibility"></select>
+                        <span asp-validation-for="Visibility" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NewCommentAllowed" class="control-label"></label>
+                        <input type="checkbox" class="form-control" asp-for="NewCommentAllowed" />
+                        <span asp-validation-for="NewCommentAllowed" class="text-danger"></span>
+                    </div>
+                </fieldset>
+            </div>            
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input class="btn btn-primary" type="submit" value="Save" />
+        </div>
+    </div>
+</form>
+<p><a class="btn btn-info" asp-route-area="Admin" asp-controller="Post" asp-action="Index"><i class="fa fa-arrow-left"></i> Back to List</a></p>
+@section scripts {
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="~/lib/select2/dist/js/select2.min.js"></script>
+    <script src="~/lib/summernote/dist/summernote.min.js"></script>
+    <script src="~/lib/moment/min/moment.min.js"></script>
+    <script src="~/lib/bootstrap3-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/js/slug.js"></script>
+    <script src="~/js/lengthCounter.js"></script>
+    <script>
+        $(function () { $('#AppUserId').select2(); });
+        $(function () { $('#PostCategories').select2(); });
+        $(function () {
+            $('#PostTags').select2({
+                tags: true,
+                tokenSeparators: [',', ' ']
+            });
+        }).on("change", function (e) {
+            var isNew = $(this).find('[data-select2-tag="true"]');
+            if (isNew.length) {
+                isNew.replaceWith('<option selected value="||' + isNew.val() + '">' + isNew.val() + '</option>');
+                newTagOptionId++;
+            }
+        });
+        $(function () { $('.summernote').summernote({ height: 300 }); });
+        $(function () { $('#PostedOn').datetimepicker({ sideBySide: true, showTodayButton: true }); });
+        $(function () { $('#Title').toSlug({ slugElement: '#Slug' }); });
+        $(function () { $('form input[data-val-length-max], form textarea[data-val-length-max]').showCharacterCount(); });
+
+    </script>
+}

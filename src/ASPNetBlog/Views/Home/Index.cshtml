@@ -1,0 +1,50 @@
+﻿@addTagHelper "*, ASPNetBlog"
+@using ASPNetBlog.App_Common.Extensions
+@model IEnumerable<ASPNetBlog.Models.Post>
+@{
+    ViewData["Title"] = "Home Page";
+}
+@foreach(var post in Model) {
+    if (post == null) {
+        <h2>No post found. Please visit other pages.</h2>
+        break;
+    }
+    <div class="row">
+        <div class="col-md-12">
+                <a href="/Post/@post.Id/@post.Slug"><h1 class="panel-heading">@post.Title</h1></a>
+            <div class="lead">
+                By <a class="label label-info" href="/Author/@post.AuthorId/@post.Author.Slug"><i class="fa fa-user"></i> @post.Author.Name</a>
+                <span class="pull-right">On <span class="label label-info"><i class="fa fa-calendar-o"></i> @post.PostedOn</span></span>
+            </div>
+                <div>
+                    @post.ShortDescription
+                    <div class="text-center">
+                        <a href="/Post/@post.Id/@post.Slug" class="btn btn-default btn-md">
+                            <i class="fa fa-folder-open"></i> Read more ...
+                        </a>
+                    </div>
+                </div><br />
+                <div>
+                    <div class="pull-left lead">
+                        Categories
+                        @foreach (var cat in post.Categories)
+                        {
+                            <a class="label label-default" href="/Category/@cat.CategoryId/@cat.Category.Slug">@cat.Category.Name</a>
+                        }
+                    </div>
+                    <div class="pull-right lead">
+                        Tags
+                        @foreach (var tag in post.Tags)
+                        {
+                            <a class="badge" href='/Tag/@tag.TagId/@tag.Tag.Name.ToSlug()'>@tag.Tag.Name</a>
+                        }
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <br /><br /><hr />
+}
+
+<paging class="pagination-lg" pageCount="@ViewBag.PageCount" pageHtml="" pageNo="@ViewBag.PageNo" pageUrl="@ViewBag.PagingUrl"></paging>
+

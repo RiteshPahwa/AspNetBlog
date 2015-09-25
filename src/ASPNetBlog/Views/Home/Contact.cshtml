@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+}
+
+<div class="row">
+    <div class="col-md-offset-1 col-md-3">
+        <h2>@ViewBag.Title</h2>
+        
+        Asp Net Blog<br />
+        Online, Cloud<br />
+        <a href="http://AspNetBlog.com">AspNetBlog</a>
+        <hr />
+        <address>
+            <strong>Support:</strong> <a href="mailto:Support@aspnetblog.com">Support@example.com</a><br />
+            <strong>Articles:</strong> <a href="mailto:Support@aspnetblog.com">Support@example.com</a>
+        </address>
+    </div>
+    <div class="col-md-offset-1 col-md-6">
+        <h2>Contact Form</h2>
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="inputName2">Name</label>
+                <div class="col-md-10">
+                    <input name="name" class="form-control input-lg" id="inputName2" type="text" placeholder="Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="inputEmail2">Email</label>
+                <div class="col-md-10">
+                    <input name="email" class="form-control input-lg" id="inputEmail2" type="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="inputContent2">Content</label>
+                <div class="col-md-10">
+                    <textarea name="commenttext" class="form-control" id="inputContent2" rows="9"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary btn-lg" type="submit">Send us an email</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

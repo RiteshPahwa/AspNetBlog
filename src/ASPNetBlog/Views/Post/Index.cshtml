@@ -1,0 +1,63 @@
+﻿@model ASPNetBlog.Models.Post
+@using ASPNetBlog.App_Common.Extensions
+@{
+    ViewBag.Title = Model.Title;
+    var post = Model;
+}
+@*MVC 6 Coding Example -- Ritesh Pahwa 9/19/15*@
+
+<div class="col-md-12">
+    <h1 class="page-header">@post.Title</h1>
+    <div class="lead">
+        By <a class="label label-info" href="/Author/@post.AuthorId/@post.Author.Slug"><i class="fa fa-user"></i> @post.Author.Name</a>
+        <span class="col-sm-offset-1">On </span><span class="label label-info"><i class="fa fa-calendar-o"></i> @post.PostedOn</span>
+    </div>
+    <p>
+        @post.ShortDescription
+    </p>
+    <br /><hr /><br />
+    <p>
+        @Html.Raw(post.Content)
+    </p>
+    <br /><br /><br />
+    <div>
+        <div class="pull-left lead"> Categories
+            @foreach (var cat in post.Categories)
+            {
+                <a class="label label-primary" href="/Category/@cat.CategoryId/@cat.Category.Slug">@cat.Category.Name</a>
+            }
+        </div>
+        <div class="pull-right lead"> Tags 
+            @foreach (var tag in post.Tags)
+            {
+                <a class="label label-success" href='/Tag/@tag.TagId/@tag.Tag.Name.ToSlug()'>@tag.Tag.Name</a>
+            }
+        </div>
+    </div>
+    <hr>
+</div>
+<br /><br /><br />
+<!-- Simple Share --> 
+<span class="label largelink label-warning lead"> Social Share <i class="fa fa-share"></i> </span> 
+<a href="http://twitter.com/home?status=[URL]" title="Share on Twitter" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-twitter"></i> </a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=[URL]" title="Share on Facebook" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-facebook"></i> </a>
+<a href="https://plus.google.com/share?url=[URL]" title="Share on Google+" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-google-plus"></i> </a>
+<a href="http://www.stumbleupon.com/submit?url=" title="Share on StumbleUpon" target="_blank" data-placement="top" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-stumbleupon"></i> </a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&title=[TITLE]&summary=&url=[URL]" title="Share on LinkedIn" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-linkedin"></i> </a>
+<a href="http://reddit.com/submit?title=[TITLE]&summary=&url=[URL]" title="Share on Reddit" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-reddit"></i> </a>
+<a href="mailto:?subject=[TITLE]&body=[URL]" title="Share on LinkedIn" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-envelope"></i> </a>
+
+<hr /><br />
+@await Component.InvokeAsync("Comment", Model.Id) 
+
+
+<div class="modal fade" id="ajaxModal" tabindex="-1" role="dialog">
+    <div id="dialogContent" class="modal-dialog modal-lg" role="document">
+    </div>
+</div>
+
+@section scripts{
+<script src="~/js/comments.js"></script>
+<script src="~/js/ajaxmodal.js"></script>
+<script src="~/js/social.js"></script>
+}

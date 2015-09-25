@@ -1,0 +1,85 @@
+﻿@using ASPNetBlog.App_Common.Session
+@model IEnumerable<ASPNetBlog.Models.PostComment>
+@*MVC 6 Coding Example -- Ritesh Pahwa 9/19/15*@
+@{
+    var FullName = "";
+    var Email = "";
+    var ReadOnly = "";
+    if (AppSession.AppUserId != null)
+    {
+        FullName = AppSession.FullName;
+        Email = AppSession.Email;
+        ReadOnly = "readonly='readonly' ";
+    }
+}
+<h3 class="page-header commentHeading"><i class="fa fa-comments"></i> Comments</h3>
+<form id="commentForm" role="form" asp-antiforgery="true" method="post">
+    <p></p>
+    <textarea id="comment" name="comment" class="form-control" placeholder="What are you thinking right now?" required></textarea>
+    <p></p>
+    <div class="row" id="signInInfo" style="display:none">
+        <div class="col-xs-7">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                <input id="email" name="email" type="email" class="form-control" @ReadOnly value="@Email" placeholder="Email address" required />
+                @if (Email == "")
+                {
+                <ul class="input-group-addon list-inline" id="loginWith">
+                    <li class="">Login</li>
+                    <li><a href="/Account/LoginPartial" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="This site"><i class="fa fa-sign-in"></i></a></li>
+                    <li><a href="/Account/LoginPartial" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="/Account/LoginPartial" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Google"><i class="fa fa-google"></i></a></li>
+                    <li><a href="/Account/LoginPartial" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                </ul> 
+                }
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                <input id="name" name="name" type="text" class="form-control" @ReadOnly value="@FullName" placeholder="Name" required />
+            </div>
+        </div>
+        <div class="col-xs-1">
+            <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+        </div>
+    </div>
+    <input type="hidden" id="parentCommentId" name="parentCommentId" value="" />
+</form>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <section class="comment-list">
+@foreach (var cmnt in Model)
+{
+<article class="row">
+    <div class="col-md-2 col-sm-2 hidden-xs bg-info">
+        <div class="thumbnail">
+            <i class="fa fa-user"></i> @cmnt.Name<br />
+            <time class="comment-date" datetime="@cmnt.CreatedOn">
+                <i class="fa fa-calendar"></i> @cmnt.CreatedOn.GetValueOrDefault().ToString("ddd, dd MMM yyyy")<br />
+                <i class="fa fa-clock-o"></i> @cmnt.CreatedOn.GetValueOrDefault().ToString("h:mm tt")
+            </time>
+        </div>
+    </div>
+    <div class="col-md-10 col-sm-10">
+        <div class="panel panel-default arrow left">
+            @*<div class="panel-heading">
+                <header class="text-left">
+                    <span class="comment-user"><i class="fa fa-user"></i> @cmnt.Name</span>
+                    <span class="col-sm-offset-1"><time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> @cmnt.CreatedOn</time></span>
+                </header>
+            </div>*@
+            <div class="panel-body">
+                <div class="comment-post replyToComment-@cmnt.Id">
+                    <p>@cmnt.Comment</p>
+                </div>
+                <p class="text-right"><a href="#" class="btn btn-default btn-sm replyToComment" data-replyto="@cmnt.Id"><i class="fa fa-reply"></i> Reply</a></p>
+            </div>
+        </div>
+    </div>
+</article>
+}
+</section></div></div>
+

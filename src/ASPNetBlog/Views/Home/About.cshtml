@@ -1,0 +1,18 @@
+﻿@model ASPNetBlog.Models.Author
+@{
+    ViewBag.Title = "About " + Model.Name;
+}
+@*MVC 6 Coding Example -- Ritesh Pahwa 9/21/15*@
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>@ViewBag.Title</h1>
+        <p>
+            @Model.ShortDescription
+        </p>
+        <p>
+            @Html.Raw(Model.Content)
+        </p>
+        <hr>
+    </div>
+</div>

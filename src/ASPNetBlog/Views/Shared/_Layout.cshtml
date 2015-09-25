@@ -1,0 +1,118 @@
+﻿@using ASPNetBlog.ViewComponents
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="msvalidate.01" content="1898D8BB4324011C696F5E42E4A550CC" /><!--Change/Remove for your for Bing WebMaster-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - ASPNetBlog</title>
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+        <environment names="Development">
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+            <link rel="stylesheet" href="~/lib/bootstrap-touch-carousel/dist/css/bootstrap-touch-carousel.css" />
+            <link rel="stylesheet" href="~/css/site.css" />
+        </environment>
+        <environment names="Staging,Production">
+            <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
+                  asp-fallback-test-class="hidden" asp-fallback-test-property="visibility" asp-fallback-test-value="hidden" />
+            <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css"
+                  asp-fallback-href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css"
+                  asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
+            <link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
+        </environment>
+        @RenderSection("head", required: false)
+    </head>
+    <body>
+        <div class="navbar bg-lightasp navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand " href="~/"><img src="~/images/AspNetBlogLogo.png" alt="Asp Net Blog" /></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    </ul>
+                    <div class="col-sm-3 col-md-3">
+                        <form class="navbar-form" action="/Search" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="q">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    @RenderBody()
+                </div>
+                <div class="col-md-3">
+                    <br /><br />
+                    @await Component.InvokeAsync("SidePanel", SidePanel.PostRecent)
+                    @await Component.InvokeAsync("SidePanel", SidePanel.Categories)
+                    @await Component.InvokeAsync("SidePanel", SidePanel.Tags)
+                </div>
+            </div>
+            <br /><hr /><br />
+            <footer>
+                <div class="navbar bg-lighterasp navbar-fixed-bottom">
+                    <div class="container">
+                        <p class="navbar-text pull-left">
+                            &copy; 2015 - ASPNetBlog | Check it live at <a target="_blank" href="http://AspNetBlog.com">AspNetBlog.com</a> and <a target="_blank" href="http://RiteshPahwa.com">Ritesh Pahwa</a>
+                        </p>
+                        <div  class="navbar-btn btn pull-right">
+                            <a href="https://www.facebook.com/AspNetBlog"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+                            <a href="https://twitter.com/AspNetBlog"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+                            <a href="https://plus.google.com/+AspNetBlog-page"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
+                            <a href="mailto:AspNetBlog@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>                        
+                        </div>
+                    </div>
+                 </div>
+            </footer>
+        </div>
+
+        <environment names="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/lib/hammer.js/hammer.js"></script>
+            <script src="~/lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js"></script>
+            <script src="~/js/site.js" asp-file-version="true"></script>
+        </environment>
+        <environment names="Staging,Production">
+            <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery">
+            </script>
+            <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+            </script>
+            <script src="//ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.js"
+                    asp-fallback-src="~/lib/hammer.js/hammer.js"
+                    asp-fallback-test="window.Hammer">
+            </script>
+            <script src="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/js/bootstrap-touch-carousel.js"
+                    asp-fallback-src="~/lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js"
+                    asp-fallback-test="window.Hammer && window.Hammer.Instance">
+            </script>
+            <script src="~/js/site.js" asp-file-version="true"></script>
+        </environment>
+
+        @RenderSection("scripts", required: false)
+        <!--Check AspNetBlog.com and RiteshPahwa.com and Github.com/RiteshPahwa/AspNetBlog -->
+    </body>
+</html>
