@@ -9,10 +9,11 @@ using Microsoft.Data.Entity;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
-using Microsoft.Framework.Runtime;
+using Microsoft.Dnx.Runtime;
 using ASPNetBlog.Models;
 using ASPNetBlog.Services;
 using ASPNetBlog.App_Common.Session;
+using Microsoft.AspNet.Http;
 /* MVC 6 Coding Example -- Ritesh Pahwa 9/23/15*/
 
 namespace ASPNetBlog

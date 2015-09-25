@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -23,6 +24,11 @@ namespace ASPNetBlog.App_Common.Extensions
         {
             byte[] bytes = System.Text.Encoding.GetEncoding("Cyrillic").GetBytes(text);
             return System.Text.Encoding.ASCII.GetString(bytes);
+        }
+
+        public static HtmlString ToHtmlString(this string text)
+        {
+            return new HtmlString(text);
         }
     }
 }

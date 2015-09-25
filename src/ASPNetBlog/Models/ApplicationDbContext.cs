@@ -28,13 +28,13 @@ namespace ASPNetBlog.Models
             
             foreach (var et in builder.Model.EntityTypes)
             {
-                var table = et.Relational().Table;
+                var table = et.Relational().TableName;
                 if (table.StartsWith("AspNet"))
-                    et.Relational().Table = table.Substring(6).TrimEnd('s');
+                    et.Relational().TableName = table.Substring(6).TrimEnd('s');
             }
 
-            builder.Entity<ApplicationUser>().Index(x => x.AppUserId).IndexName("IDX_APPUSER_AppUserId");
-            builder.Entity<ApplicationUser>().Index(x => x.Email).IndexName("IDX_APPUSER_Email").Unique(true);
+            builder.Entity<ApplicationUser>().Index(x => x.AppUserId).SqlServerIndexName("IDX_APPUSER_AppUserId");
+            builder.Entity<ApplicationUser>().Index(x => x.Email).SqlServerIndexName("IDX_APPUSER_Email").Unique(true);
 
             builder.Entity<PostCategory>().Key(k => new { k.PostId, k.CategoryId });
             builder.Entity<PostTag>().Key(k => new { k.PostId, k.TagId });

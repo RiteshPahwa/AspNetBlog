@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNet.Mvc.Rendering;
+﻿using Microsoft.AspNet.Html.Abstractions;
+using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Framework.WebEncoders;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 /* MVC 6 Coding Example -- Ritesh Pahwa 9/21/15*/
 
 namespace ASPNetBlog.App_Common.Extensions
@@ -53,26 +52,26 @@ namespace ASPNetBlog.App_Common.Extensions
                 endPage = PageCount;
             }
 
-            var pageElements = new StringBuilder();
+            var innerHtml = new StringWriter(); //BufferedHtmlContent(); //Coming soon Beta8
 
             output.TagName = "ul";
             for (var i = startPage; i <= endPage; i++)
             {
                 if (i == startPage && !string.IsNullOrWhiteSpace(PagePrevHtml))
-                    pageElements.AppendLine(buildPageElement(i, PagePrevHtml));
+                    buildPageElement(i, PagePrevHtml).WriteTo(innerHtml, HtmlEncoder.Default);
 
-                pageElements.AppendLine(buildPageElement(i, PageHtml, i == PageNo ? "active" : ""));
+                buildPageElement(i, PageHtml, i == PageNo ? "active" : "").WriteTo(innerHtml, HtmlEncoder.Default);
 
                 if (i == endPage && !string.IsNullOrWhiteSpace(PageNextHtml))
-                    pageElements.AppendLine(buildPageElement(i, PageNextHtml));
+                    buildPageElement(i, PageNextHtml).WriteTo(innerHtml, HtmlEncoder.Default);
             }
 
-            output.Content.SetContent(pageElements.ToString());
+            output.Content.SetContent(innerHtml.ToString());
             //Beautiful C# 6.0 says it in one line below
             output.Attributes["class"] = $"pagination {output.Attributes["class"]?.Value}";
         }
 
-        private string buildPageElement(int currentPageNo, string aHtml, string cssClass = null)
+        private TagBuilder buildPageElement(int currentPageNo, string aHtml, string cssClass = null)
         {
             var li = new TagBuilder("li");
 
@@ -82,11 +81,12 @@ namespace ASPNetBlog.App_Common.Extensions
 
             var anchorHtml = aHtml?.Replace("{p}", $"{currentPageNo}");
             if (string.IsNullOrWhiteSpace(anchorHtml)) anchorHtml = $"{currentPageNo}";
-            anchor.InnerHtml = anchorHtml;
+            anchor.InnerHtml = anchorHtml.ToHtmlString();
 
-            li.InnerHtml = anchor.ToString();
+            li.InnerHtml = anchor;
             if (!string.IsNullOrWhiteSpace(cssClass)) li.AddCssClass(cssClass);
-            return li.ToString();
+
+            return li;
 
         }
     }

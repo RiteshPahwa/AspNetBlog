@@ -49,7 +49,7 @@ namespace ASPNetBlog.ViewComponents
         private async Task<IViewComponentResult> TagsAsync(int count)
         {
             var tags = await Db.Tags
-                .Select(t => new KeyValuePair<string,string>(t.Name, $"/Post/{t.Id}/{t.Name.ToSlug()}"))
+                .Select(t => new KeyValuePair<string,string>(t.Name, $"/Tag/{t.Id}/{t.Name.ToSlug()}"))
                 .Take(count).ToListAsync();
             var sidePanelObj = new SidePanelViewModel { SidePanel = SidePanel.Tags, Heading = "Tags", Data = tags };
             return View(sidePanelObj);

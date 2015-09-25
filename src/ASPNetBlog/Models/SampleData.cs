@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Framework.Configuration;
-using Microsoft.Framework.Runtime;
+using Microsoft.Dnx.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +16,8 @@ namespace ASPNetBlog.Models
 {
     public static class SampleData
     {
-        const string blogAdminUserName = "BlogAdminUserName";
-        const string blogAdminPassword = "blogAdminPassword";
+        const string blogAdminUserName = "Administration:User:BlogAdminUserName";
+        const string blogAdminPassword = "Administration:User:BlogAdminPassword";
 
         public static async Task InitializeAsync(IServiceProvider serviceProvider, bool createUsers = true)
         {
@@ -98,11 +98,12 @@ namespace ASPNetBlog.Models
             //    await roleManager.CreateAsync(new IdentityRole(adminRole));
             //}
 
-            var user = await userManager.FindByNameAsync(configuration.Get(blogAdminUserName));
+            var user = await userManager.FindByNameAsync(configuration[blogAdminUserName]);
             if (user == null)
             {
-                user = new ApplicationUser { UserName = configuration.Get(blogAdminUserName) };
-                await userManager.CreateAsync(user, configuration.Get(blogAdminPassword));
+                var name = configuration[blogAdminUserName];
+                user = new ApplicationUser { UserName = name , Email = name, FullName = name };
+                await userManager.CreateAsync(user, configuration[blogAdminPassword]);
                 await userManager.AddToRoleAsync(user, adminRole);
                 await userManager.AddClaimAsync(user, new Claim("ManageBlog", "Allowed"));
             }

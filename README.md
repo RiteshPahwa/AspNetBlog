@@ -5,19 +5,21 @@ Welcome to AspNetBlog - Visit http://AspNetBlog.com to see it live (coming soon)
 ASP vNext, Asp.Net 5, MVC 6 Blog, Entity Framework 7 Source Code Example 
 
 ## Purpose
-1. To Showcase the new features of MVC 6
+1. To Showcase the new features of Asp.Net 5 MVC 6 Beta7
 2. To build a typical application which uses MVC, Security, Session, Entity Framework 7
 
 ## How to use it
+1. Make sure you have installed Asp.Net Beta-7 from http://blogs.msdn.com/b/webdev/archive/2015/09/02/announcing-availability-of-asp-net-5-beta7.aspx Or https://www.nuget.org/packages/Microsoft.AspNet.Mvc/6.0.0-beta7
+1. Change the config.json for your connection string
 1. Create AspNetBlog Database, if it doesn't create for you
 2. Run project, Register yourself, if SampleData, doesn't create one for you
 3. Goto http://projectUrl/Admin
 4. Create an Author
 5. Create few Categories
-7. Create Posts & Tags (tags can be created dynamically with post)
-8. Enjoy your blog
-9. Read code, Fork it and Start sending pull requests
-10. Create test project for it
+6. Create Posts & Tags (tags can be created dynamically with post)
+7. Enjoy your blog
+8. Read code, Fork it and Start sending pull requests
+9.   Create test project for it
 
 
 ## Help

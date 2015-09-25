@@ -3,5 +3,11 @@
     "DefaultConnection": {
       "ConnectionString": "Server=.\\SQLEXPRESS;Database=ASPNetBlog;Trusted_Connection=True;MultipleActiveResultSets=true;"
     }
+  },
+    "Administration": {
+      "User": {
+        "BlogAdminUserName" : "Admin@b.c",
+        "BlogAdminPassword" : "blogP@ssw0rd"
+    }
   }
 }

@@ -20,7 +20,7 @@ namespace ASPNetBlog.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    //[Authorize(Users="Admin,UserAdmin")]
+    [Authorize(Roles="Admin,UserAdmin")]
     public class UserController : BaseController
     {
         [FromServices]

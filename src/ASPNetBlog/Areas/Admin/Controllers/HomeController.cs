@@ -12,6 +12,7 @@ namespace ASPNetBlog.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
+    [Authorize(Roles="Admin")] //Should Implement Claims here
     public class HomeController : Controller
     {
         // GET: /<controller>/

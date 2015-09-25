@@ -37,16 +37,7 @@
     <hr>
 </div>
 <br /><br /><br />
-<!-- Simple Share --> 
-<span class="label largelink label-warning lead"> Social Share <i class="fa fa-share"></i> </span> 
-<a href="http://twitter.com/home?status=[URL]" title="Share on Twitter" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-twitter"></i> </a>
-<a href="https://www.facebook.com/sharer/sharer.php?u=[URL]" title="Share on Facebook" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-facebook"></i> </a>
-<a href="https://plus.google.com/share?url=[URL]" title="Share on Google+" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-google-plus"></i> </a>
-<a href="http://www.stumbleupon.com/submit?url=" title="Share on StumbleUpon" target="_blank" data-placement="top" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-stumbleupon"></i> </a>
-<a href="http://www.linkedin.com/shareArticle?mini=true&title=[TITLE]&summary=&url=[URL]" title="Share on LinkedIn" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-linkedin"></i> </a>
-<a href="http://reddit.com/submit?title=[TITLE]&summary=&url=[URL]" title="Share on Reddit" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-reddit"></i> </a>
-<a href="mailto:?subject=[TITLE]&body=[URL]" title="Share on LinkedIn" target="_blank" class="btn btn-lg bg-danger btn-social-share"><i class="fa fa-envelope"></i> </a>
-
+@{ await Html.RenderPartialAsync("_SocialShare");}
 <hr /><br />
 @await Component.InvokeAsync("Comment", Model.Id) 
 

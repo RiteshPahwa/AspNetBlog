@@ -20,7 +20,7 @@ namespace ASPNetBlog.Areas.Admin.Controllers
 
     [Area("Admin")]
     [Authorize]
-    //[Authorize(Roles="Admin,CategoryAdmin")] //Should Implement Claims here
+    [Authorize(Roles="Admin,CategoryAdmin")] //Should Implement Claims here
     public class CategoryController : BaseController
     {
         protected override void ActionStartup() { ViewBag.EntityTitle = "Category"; }

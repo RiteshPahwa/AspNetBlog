@@ -21,7 +21,7 @@ namespace ASPNetBlog.Areas.Admin.Controllers
 
     [Area("Admin")]
     [Authorize]
-    //[Authorize(Roles="Admin,PostAdmin")] //Should Implement Claims here
+    [Authorize(Roles="Admin,PostAdmin")] //Should Implement Claims here
     public class PostController : BaseController
     {
         protected override void ActionStartup() { ViewBag.EntityTitle = "Post"; }

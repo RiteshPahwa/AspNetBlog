@@ -19,7 +19,7 @@ namespace ASPNetBlog.Areas.Admin.Controllers
 
     [Area("Admin")]
     [Authorize]
-    //[Authorize(Roles="Admin,AuthorAdmin")] //Should Implement Claims here
+    [Authorize(Roles="Admin,AuthorAdmin")] //Should Implement Claims here
     public class AuthorController : BaseController
     {
         protected override void ActionStartup() { ViewBag.EntityTitle = "Author"; }

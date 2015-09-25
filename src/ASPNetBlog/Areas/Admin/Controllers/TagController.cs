@@ -19,7 +19,7 @@ namespace ASPNetBlog.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    //[Authorize(Tags="Admin,TagAdmin")] // Should be change to claims later
+    [Authorize(Roles="Admin,TagAdmin")] // Should be change to claims later
     public class TagController : BaseController
     {
         protected override void ActionStartup() { ViewBag.EntityTitle = "Tag";}

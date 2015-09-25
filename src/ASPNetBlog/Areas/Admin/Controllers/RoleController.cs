@@ -19,7 +19,7 @@ namespace ASPNetBlog.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    //[Authorize(Roles="Admin,RoleAdmin")]
+    [Authorize(Roles="Admin,RoleAdmin")]
     public class RoleController : BaseController
     {
         protected override void ActionStartup() { ViewBag.EntityTitle = "Role"; }
