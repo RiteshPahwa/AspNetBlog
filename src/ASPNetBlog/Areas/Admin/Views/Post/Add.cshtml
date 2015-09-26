@@ -99,6 +99,7 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
     <script src="~/lib/select2/dist/js/select2.min.js"></script>
     <script src="~/lib/summernote/dist/summernote.min.js"></script>
+    <script src="~/js/setupEditor.js"></script>
     <script src="~/lib/moment/min/moment.min.js"></script>
     <script src="~/lib/bootstrap3-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <script src="~/js/slug.js"></script>
@@ -118,7 +119,7 @@
                 newTagOptionId++;
             }
         });
-        $(function () { $('.summernote').summernote({ height: 300 }); });
+        $(function () { $('.summernote').setupEditor(); });
         $(function () { $('#PostedOn').datetimepicker({ sideBySide: true, showTodayButton: true }); });
         $(function () { $('#Title').toSlug({ slugElement: '#Slug' }); });
         $(function () { $('form input[data-val-length-max], form textarea[data-val-length-max]').showCharacterCount(); });

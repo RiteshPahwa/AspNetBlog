@@ -19,8 +19,11 @@
                 { name: 'Id', data: 'Id', title: "Id", sortable: true, searchable: true },
                 { name: 'Title', data: "Title", title: "Title", sortable: true, searchable: true },
                 { name: 'PostedOn', data: "PostedOn", title: "PostedOn", sortable: true, searchable: true },
+                { name: 'Slug', data: "Slug", title: "Slug", visible: false },
                 { data: null, title: "Action", render: function (data, type, row) {
-                    return '<a href="./Post/Edit?id=' + data.Id + '">Edit</a> / <a href="./Post/Delete?id=' + data.Id + '" >Delete</a>';
+                    return '<a href="./Post/Edit?id=' + data.Id + '">Edit</a>'
+                        + ' / <a href="/Post/'+ data.Id +'/'+ data.Slug +'" target=_blank>View</a>'
+                        + ' / <a href="./Post/Delete?id=' + data.Id + '" >Delete</a>';
                 } }
                 //{ data: null, className: "center", defaultContent: '<a href="./Edit?id='+ oObj.aData[0] + '">Edit</a> / <a href="" class="editor_remove">Delete</a>' }
             ]

@@ -8,7 +8,7 @@
         $(this).change(function () { var txt = $(this).val(); $(settings.slugElement).val(strToSlug(txt)); });
         $(settings.slugElement).change(function () { $(this).val(strToSlug($(this).val())); });
         return this;
-    };
+    }
 
     function strToSlug(str) {
         str = str.replace(/^\s+|\s+$/g, ''); // trim
