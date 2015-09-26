@@ -1,5 +1,7 @@
 # AspNetBlog
-Welcome to AspNetBlog - Visit http://AspNetBlog.com to see it live (coming soon)
+Welcome to AspNetBlog - 
+Visit http://AspNetBlog.com to see it live (coming soon)
+Visit http://aspnetblog.azurewebsites.net/ for Azureimplementation of AspNetBlog
 
 ## Technologies
 ASP vNext, Asp.Net 5, MVC 6 Blog, Entity Framework 7 Source Code Example 
@@ -19,7 +21,7 @@ ASP vNext, Asp.Net 5, MVC 6 Blog, Entity Framework 7 Source Code Example
 6. Create Posts & Tags (tags can be created dynamically with post)
 7. Enjoy your blog
 8. Read code, Fork it and Start sending pull requests
-9.   Create test project for it
+9. Create test project for it
 
 
 ## Help
